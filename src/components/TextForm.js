@@ -6,21 +6,27 @@ import React, { useState } from 'react'
 
 export default function TextForm(props) {
     //This is part of Hooks https://legacy.reactjs.org/docs/hooks-intro.html
+//To Uppercase the text written in textbox   
     const handleUpClick = () => { 
         // console.log("Uppercase was Clicked " + text);
         let newText = text.toUpperCase();
         setText(newText);
     }
+//To lowercase the text written in textbox
     const handleLoClick = () => { 
         // console.log("Uppercase was Clicked " + text);
         let newText = text.toLowerCase();
         setText(newText);
     }
+
+//To clear the text written in Textbox
     const handleLClearText = () => { 
         // console.log("Uppercase was Clicked " + text);
         let newText = "";
         setText(newText);
     }
+
+//To speak the text written in Textbox
     const handleLSpeak = () => { 
         // console.log("Uppercase was Clicked " + text);
         let msg = new SpeechSynthesisUtterance();
@@ -28,9 +34,16 @@ export default function TextForm(props) {
         window.speechSynthesis.speak(msg);
         
     }
+
+    //To Copy the text written in TextBox
+    const handleCopy = () => {
+        var text = document.getElementById("myBox")
+        text.select()
+        navigator.clipboard.writeText(text.value)
+    }
     //When we tr to change anything in the textbox an event i generated 
     //That event is use to change the values in the textbox
-    const handleOnChnage = (event) => { 
+    const handleOnChange = (event) => { 
         // console.log("Onchange")
         setText(event.target.value)
     }
@@ -42,12 +55,13 @@ export default function TextForm(props) {
             
             <h2>{props.heading}</h2>
             <div className="mb-3">
-                <textarea className="form-control" placeholder='Enter Text Here' id="myBox" value={text} onChange={ handleOnChnage} rows="8"></textarea>
+                <textarea className="form-control" placeholder='Enter Text Here' id="myBox" value={text} onChange={ handleOnChange} rows="8"></textarea>
             </div>
             <button className="btn btn-primary mx-1" onClick={handleUpClick}>Convert to Uppercase</button>
             <button className="btn btn-primary mx-1" onClick={handleLoClick}>Convert to Lowercase</button>
             <button className="btn btn-primary mx-1" onClick={handleLClearText}>Clear</button>
             <button className="btn btn-primary mx-1" onClick={handleLSpeak}>Speak</button>
+            <button className="btn btn-primary mx-1" onClick={handleCopy}>Copy</button>
             </div>
             <div className="container my-3">
                 <h2>Your Text summary</h2>
