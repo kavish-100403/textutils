@@ -11,12 +11,14 @@ export default function TextForm(props) {
         // console.log("Uppercase was Clicked " + text);
         let newText = text.toUpperCase();
         setText(newText);
+        props.showAlert("Converted to Uppercase", "success");
     }
 //To lowercase the text written in textbox
     const handleLoClick = () => { 
         // console.log("Uppercase was Clicked " + text);
         let newText = text.toLowerCase();
         setText(newText);
+        props.showAlert("Converted to Lowercase", "success");
     }
 
 //To clear the text written in Textbox
@@ -24,6 +26,7 @@ export default function TextForm(props) {
         // console.log("Uppercase was Clicked " + text);
         let newText = "";
         setText(newText);
+        props.showAlert("Cleared Text", "success");
     }
 
 //To speak the text written in Textbox
@@ -32,14 +35,17 @@ export default function TextForm(props) {
         let msg = new SpeechSynthesisUtterance();
         msg.text = text;
         window.speechSynthesis.speak(msg);
+        props.showAlert("Speaking...", "success");
         
     }
 
     //To Copy the text written in TextBox
     const handleCopy = () => {
-        var text = document.getElementById("myBox")
-        text.select()
-        navigator.clipboard.writeText(text.value)
+        var text = document.getElementById("myBox");
+        text.select();
+        console.log(text.select());
+        navigator.clipboard.writeText(text.value);
+        // props.showAlert("Copied to Clipboard", "success");
     }
     //When we tr to change anything in the textbox an event i generated 
     //That event is use to change the values in the textbox
