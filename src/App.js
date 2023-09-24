@@ -61,6 +61,7 @@ function App() {
         {/* <TextForm showAlert={showAlert} heading="Enter the Text to analyze below" mode={mode}/> */}
         {/* <About /> */}
       <Routes>
+          <Route path="/textutils" element={<TextForm showAlert={showAlert} heading="Enter the Text to analyze below" mode={mode}/>} />
           <Route path="/" element={<TextForm showAlert={showAlert} heading="Enter the Text to analyze below" mode={mode}/>} />
           <Route path="/about" element={<About />} />
           {/* <TextForm showAlert={showAlert} heading="Enter the Text to analyze below" mode={mode}/> */}
