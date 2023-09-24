@@ -75,10 +75,10 @@ export default function TextForm(props) {
                 <p>{0.008 * text.split(" ").length} Minutes to read</p>
                 <h2>Preview</h2>
                 <p>{text.length > 0 ? text : "Enter Something in the textbox above to preview it here"}</p>
-                <h2>Color Picker</h2>
+                {/* <h2>Color Picker</h2>
                 <p>
                     <input type="color" id="colorpicker" value="#000000" />
-                </p>
+                </p> */}
             </div>
         </>
   )

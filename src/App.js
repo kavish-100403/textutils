@@ -4,15 +4,15 @@ import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import Alert from './components/Alert';
 import About from './components/About';
-import { useState } from 'react';
-import React from "react"
+import React, { useState } from 'react'
+
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
+  // Switch,
+  Routes,
+  Route
   // Link
 } from "react-router-dom";
-
 // let name="kavish"
 function App() {
   const [mode, setMode] = useState('light');  //whether dark mode is enabled or not
@@ -52,23 +52,20 @@ function App() {
   }
 
   return(
-    <>
+    <>    
       <Router>
       <Navbar title="TextUtils" aboutText="About Us" mode={mode} toggleMode={toggleMode} />
       <Alert alert= {alert} />
       <div className="container my-3" >
-          
-      <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/">
-            <TextForm showAlert={showAlert} heading="Enter the Text to analyze below" mode={mode}/>
-          </Route>
-      </Switch>
+        {/* <TextForm showAlert={showAlert} heading="Enter the Text to analyze below" mode={mode}/> */}
         {/* <About /> */}
+      <Routes>
+          <Route path="/" element={<TextForm showAlert={showAlert} heading="Enter the Text to analyze below" mode={mode}/>} />
+          <Route path="/about" element={<About />} />
+          {/* <TextForm showAlert={showAlert} heading="Enter the Text to analyze below" mode={mode}/> */}
+      </Routes>
       </div>
-      </Router>
+    </Router>
     </>
 )
 }
