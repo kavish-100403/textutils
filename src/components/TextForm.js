@@ -46,7 +46,8 @@ export default function TextForm(props) {
         text.select();
         console.log(text.select());
         navigator.clipboard.writeText(text.value);
-        // props.showAlert("Copied to Clipboard", "success");
+        document.getSelection().removeAllRanges();
+        props.showAlert("Copied to Clipboard", "success");
     }
     //When we tr to change anything in the textbox an event i generated 
     //That event is use to change the values in the textbox
