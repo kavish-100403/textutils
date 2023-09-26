@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 
 
 export default function TextForm(props) {
+    
     //This is part of Hooks https://legacy.reactjs.org/docs/hooks-intro.html
 //To Uppercase the text written in textbox   
     const handleUpClick = () => { 
@@ -61,20 +62,22 @@ export default function TextForm(props) {
             
             <h2>{props.heading}</h2>
             <div className="mb-3">
-                    <textarea className="form-control" placeholder='Enter Text Here' id="myBox" value={text} onChange={handleOnChange} style={{ backgroundColor: props.mode === "dark" ? "grey" : "white",color: props.mode === "dark" ? "white" : "black" }} rows="8"></textarea>
+                    <textarea className="form-control" placeholder='Enter Text Here' id="myBox" value={text} onChange={handleOnChange} style={{ backgroundColor: props.mode === "dark" ? "grey" : "white",color: props.mode === "dark" ? "white" : "black"}} rows="8"></textarea>
             </div>
-            <button className="btn btn-primary mx-1" onClick={handleUpClick}>Convert to Uppercase</button>
-            <button className="btn btn-primary mx-1" onClick={handleLoClick}>Convert to Lowercase</button>
-            <button className="btn btn-primary mx-1" onClick={handleLClearText}>Clear</button>
-            <button className="btn btn-primary mx-1" onClick={handleLSpeak}>Speak</button>
-            <button className="btn btn-primary mx-1" onClick={handleCopy}>Copy</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>Convert to Uppercase</button>
+            <button disabled={text.length===0}  className="btn btn-primary mx-1 my-1" onClick={handleLoClick}>Convert to Lowercase</button>
+            <button disabled={text.length===0}  className="btn btn-primary mx-1 my-1" onClick={handleLClearText}>Clear</button>
+            <button disabled={text.length===0}  className="btn btn-primary mx-1 my-1" onClick={handleLSpeak}>Speak</button>
+            <button disabled={text.length===0}  className="btn btn-primary mx-1 my-1" onClick={handleCopy}>Copy</button>
             </div>
             <div className="container my-3" style={{color: props.mode === "dark" ? "white" : "black"}}>
                 <h2>Your Text summary</h2>
-                <p>{text.split(" ").length} words and {text.length} characters</p>
-                <p>{0.008 * text.split(" ").length} Minutes to read</p>
+                {/* added arrow fntion to fix the minor problem in counting the words */}
+                {/* Filter is used to pass an arrow function to check the condition and then give the value */}
+                <p>{text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} characters</p>
+                <p>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} Minutes to read</p>
                 <h2>Preview</h2>
-                <p>{text.length > 0 ? text : "Enter Something in the textbox above to preview it here"}</p>
+                <p>{text.length > 0 ? text : "Nothing to preview!"}</p>
                 {/* <h2>Color Picker</h2>
                 <p>
                     <input type="color" id="colorpicker" value="#000000" />

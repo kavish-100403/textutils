@@ -32,9 +32,9 @@ function App() {
   const toggleMode = () => { 
     if (mode === "light") {
       setMode("dark");
-      document.body.style.backgroundColor = "gray";
+      document.body.style.backgroundColor = "#042743";
       showAlert("Dark mode has been enabled", "success");
-      document.title = 'TextUtils - Dark Mode'
+      // document.title = 'TextUtils - Dark Mode'
       // faenankankjn
       //To show something at every few seconds we can use setInterval
       // setInterval(() => {
@@ -48,7 +48,7 @@ function App() {
       setMode('light');
       document.body.style.backgroundColor = "white";
       showAlert("Light mode has been enabled", "success");
-      document.title='TextUtils - Light Mode'
+      // document.title='TextUtils - Light Mode'
     }
   }
 
@@ -61,9 +61,9 @@ function App() {
         {/* <TextForm showAlert={showAlert} heading="Enter the Text to analyze below" mode={mode}/> */}
         {/* <About /> */}
       <Routes>
-          <Route path="/textutils" element={<TextForm showAlert={showAlert} heading="Enter the Text to analyze below" mode={mode}/>} />
+          <Route path="/textutils/" element={<TextForm showAlert={showAlert} heading="Enter the Text to analyze below" mode={mode}/>} />
           <Route path="/" element={<TextForm showAlert={showAlert} heading="Enter the Text to analyze below" mode={mode}/>} />
-          <Route path="/about" element={<About />} />
+          <Route path="/about" element={<About mode={mode} />} />
           {/* <TextForm showAlert={showAlert} heading="Enter the Text to analyze below" mode={mode}/> */}
       </Routes>
       </div>
