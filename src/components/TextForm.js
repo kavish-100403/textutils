@@ -42,11 +42,7 @@ export default function TextForm(props) {
 
     //To Copy the text written in TextBox
     const handleCopy = () => {
-        var text = document.getElementById("myBox");
-        text.select();
-        console.log(text.select());
-        navigator.clipboard.writeText(text.value);
-        document.getSelection().removeAllRanges();
+        navigator.clipboard.writeText(text);
         props.showAlert("Copied to Clipboard", "success");
     }
     //When we tr to change anything in the textbox an event i generated 
@@ -75,14 +71,12 @@ export default function TextForm(props) {
                 <h2>Your Text summary</h2>
                 {/* added arrow fntion to fix the minor problem in counting the words */}
                 {/* Filter is used to pass an arrow function to check the condition and then give the value */}
-                <p>{text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} characters</p>
+                {/* Splitting by a space or by a new line  */}
+                <p>{text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words and {text.length} characters</p>
                 <p>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} Minutes to read</p>
                 <h2>Preview</h2>
                 <p>{text.length > 0 ? text : "Nothing to preview!"}</p>
-                {/* <h2>Color Picker</h2>
-                <p>
-                    <input type="color" id="colorpicker" value="#000000" />
-                </p> */}
+               
             </div>
         </>
   )
